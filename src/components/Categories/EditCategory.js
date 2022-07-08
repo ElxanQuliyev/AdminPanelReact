@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { categoryAdd, categoryEditAction, categoryUpdateAction, listCategories } from "../../Redux/Actions/CategoryActions";
-import { useForm } from "react-hook-form";
-import { CATEGORY_ADD_RESET, CATEGORY_LIST_SUCCESS } from "../../Redux/Constants/CategoryConstants";
+import { categoryEditAction, categoryUpdateAction, listCategories } from "../../Redux/Actions/CategoryActions";
+import { CATEGORY_LIST_SUCCESS } from "../../Redux/Constants/CategoryConstants";
 import { COURSE_UPDATE_RESET } from "../../Redux/Constants/CourseConstants";
 import { useHistory } from "react-router-dom";
 
 const EditCategory = ({categoryId}) => {
   const {categories} = useSelector(state=>state.categoryList);
   const {category}=useSelector(state=>state.categoryEdit);
+  console.log(category)
   const [parentCategoryId,setParentCategoryId]=useState(null);
   const [name,setName]=useState("");
   const [isFeatured,setIsFeatured]=useState(false);
@@ -23,7 +23,7 @@ const EditCategory = ({categoryId}) => {
     }
   },[dispatch,categoryId,category.parentId,category.name,category.isFeatured,category.categoryId]);
   const categorySubmitHandler=(e)=>{
-    e.preventDefault();
+    e.preventDefault(); 
     const data={
       id:categoryId,name,parentCategoryId,isFeatured
     }
@@ -72,9 +72,10 @@ const EditCategory = ({categoryId}) => {
           </div>
            <div className="mb-4">
            <label htmlFor="isFeatured" className="form-label">Is Featured</label>
-            <input name="isFeatured" 
-              onChange={e=>setIsFeatured(e.target.value)}
-             type="checkbox" id="isFeatured" checked={isFeatured? true:false}/>
+            <input name="isFeatured"
+              onChange={()=>setIsFeatured(e=>!e)}
+              value={isFeatured}
+              type="checkbox" id="isFeatured" checked={isFeatured? true:false}/>
           </div>
           <div className="d-grid">
             <button className="btn btn-primary py-3">Edit category</button>

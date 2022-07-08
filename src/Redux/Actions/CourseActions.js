@@ -30,7 +30,7 @@ export const courseUpdateAction=(courseEditData)=>async(dispatch)=>{
         )
         console.log(data)
         dispatch({type:COURSE_UPDATE_SUCCESS,payload:data});
-        dispatch({type:COURSE_EDIT_SUCCESS,payload:data.data});
+        dispatch({type:COURSE_EDIT_SUCCESS,payload:data.course});
 
     } catch (error) {
         dispatch({type:COURSE_UPDATE_FAIL,payload:error});

@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "./../components/sidebar";
 import Header from "./../components/Header";
-// import EditProductMain from "./../components/products/EditproductMain";
+import EditProductMain from "./../components/products/EditProductMain";
 
 const ProductEditScreen = ({ match }) => {
   const productId = match.params.id;
@@ -10,7 +10,7 @@ const ProductEditScreen = ({ match }) => {
       <Sidebar />
       <main className="main-wrap">
         <Header />
-        {/* <EditProductMain productId={productId} /> */}
+        <EditProductMain productId={productId} />
       </main>
     </>
   );
